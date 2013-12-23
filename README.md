@@ -1,6 +1,6 @@
 #wp-env-config
 
-A configuration setup the allows for WordPress multi-environment support by giving each envorinment of config file.
+A configuration setup that allows for WordPress multi-environment support by giving each envorinment of config file. Each environment is determined by the URL from which it serves the site.
 
 
 ##Setup

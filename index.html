@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Wp-env-config by On-Edge</title>
+    <title>wp-env-config by On-Edge</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -14,9 +14,10 @@
   </head>
   <body>
     <div class="wrapper">
+    <a href="https://github.com/On-Edge/wp-env-config"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
       <header>
-        <h1>Wp-env-config</h1>
-        <p>A config that allows for WordPress to support multiple environments</p>
+        <h1>wp-env-config</h1>
+        <p>An addon that makes it easy to run the same WordPress site acroos multiple environments.</p>
 
         <p class="view"><a href="https://github.com/On-Edge/wp-env-config">View the Project on GitHub <small>On-Edge/wp-env-config</small></a></p>
 
@@ -28,39 +29,40 @@
         </ul>
       </header>
       <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="who-needs-this" class="anchor" href="#who-needs-this"><span class="octicon octicon-link"></span></a>Who needs this?</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>If you're a WordPress developer, you probably have multiple copies of the same site running across a number of different server configurations: your local installation, a staging server, the live site, etc...</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>Managing these settings in 1 <code>wp-config.php</code> file can be kind of a problem when you want to keep your code in version control. If you're not doing that already, stop reading this and figure that out first. This is a <a href="http://24ways.org/2013/git-for-grownups/" target="_blank">good</a> <a href="http://stevegrunwell.com/blog/keeping-wordpress-under-version-control-with-git/" target="_blank">place</a> <a href="http://blog.grayghostvisuals.com/wordpress/wordpress-and-git/" target="_blank">to</a> <a href="http://stevegrunwell.github.io/wordpress-git/#/" target="_blank">start</a>.</p> <p>Already using git/svn/... to manage your code? Good. This will help you keep your WordPress config a bit cleaner and easier to manage.</p>
 
 <h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<a name="how-does-it-work" class="anchor" href="#how-does-it-work"><span class="octicon octicon-link"></span></a>How does it work?</h3>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>First, you edit your <code>wp-config.php</code> file so that it will include <code>config.master.php</code>, which in turn will look for <code>conf.env.php</code>. In that file, you'll define the enviromnent you have/need, based on the URL from which the website is served.</p>
+<pre><code>if (!defined('ENV')) {
+    switch (strtolower($_SERVER['HTTP_HOST'])) {
+        case 'website.tld' :
+        case 'www.website.tld' :
+            define('ENV', 'prod');
+            define('ENV_FULL', 'Production');
+            define('ENV_DEBUG', false); </code></pre>
+<p>In the example above, <code>config.prod.php</code> will be used when the site is visited through website.tld or www.website.tld.</p>
+
+<p>If no URL matches, the settings in config.local.php will be used. The repository contains a more extended <a href="https://github.com/On-Edge/wp-env-config/blob/master/README.md">readme</a> that details how to install and adapt this code to make it work with your WordPress install.</p>
+
+
+
 
 <h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Contact</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>If you think you can improve this code, you're very welcome to send me a pull request!</p>
+<p>Want to get in touch with me? You can <a href="mailto:dev@onedge.be?subject=[github.com]wp-env-conf" >email me</a> or <a href="http://www.twitter.com/jannemans">follow me on Twitter</a>.
       </section>
       <footer>
+      <a href="http://onedge.be" target="_blank"><img src="onedge.png"></a>
         <p>This project is maintained by <a href="https://github.com/On-Edge">On-Edge</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>

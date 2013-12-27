@@ -2,9 +2,10 @@
 
 body {
   padding:50px;
-  font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font:15px Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#777;
   font-weight:300;
+  line-height: 1.5;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,11 +38,14 @@ a {
   font-weight:400;
   text-decoration:none;
 }
+a:hover {
+  text-decoration: underline;
+}
 
 a small {
   font-size:11px;
   color:#777;
-  margin-top:-0.6em;
+  margin-top:0.2em;
   display:block;
 }
 

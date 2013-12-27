@@ -10,6 +10,11 @@
  * @author     On Edge <dev@onedge.be>
  */
 
+/** Uncomment the line below to display the current url in the browser **/
+// printf($_SERVER['HTTP_HOST']);
+
+/* Config */
+
 if (!defined('ENV')) {
     switch (strtolower($_SERVER['HTTP_HOST'])) {
         case 'website.tld' :

@@ -28,6 +28,8 @@ if (!defined('ENV')) {
             define('ENV', 'dev');
             define('ENV_FULL', 'Development');
             define('ENV_DEBUG', true);
+            define( 'WP_SITEURL', 'http://' . $_SERVER['HTTP_HOST'] );
+            define( 'WP_HOME', 'http://' . $_SERVER['HTTP_HOST'] );
             break;
 
         default :
